@@ -1,14 +1,14 @@
 <?php
 
 
-namespace App\Services\Client\Dto;
+namespace App\Service\Client\Dto;
 
 use App\Contracts\DtoContract;
 
 /**
  * Транспорт для создания клиента
  */
-class CreateClientDTOContract implements DtoContract
+class CreateClientDTO implements DtoContract
 {
     private string $firstName;
     private string $lastName;

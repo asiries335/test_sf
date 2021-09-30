@@ -3,8 +3,8 @@
 
 namespace App\Ui\Api\V1;
 
-use App\Services\Client\Actions\CreateClientAction;
-use App\Services\Client\Dto\CreateClientDTOContract;
+use App\Service\Client\Actions\CreateClientAction;
+use App\Service\Client\Dto\CreateClientDTO;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -23,7 +23,7 @@ class ClientController extends AbstractController
      * @throws \Exception
      */
     public function create(Request $request, CreateClientAction $createClientAction) {
-        $dto = new CreateClientDTOContract('wewer', 'wfewef', 'wef@fsd.r', 'werwerwer');
+        $dto = new CreateClientDTO('wewer', 'wfewef', 'wef@fsd.r', 'werwerwer');
 
         $client = $createClientAction->run($dto);
 

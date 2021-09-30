@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Services\Client\Actions;
+namespace App\Service\Client\Actions;
 
 
 use App\Contracts\ActionContract;

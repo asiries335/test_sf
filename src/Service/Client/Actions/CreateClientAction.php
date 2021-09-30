@@ -1,13 +1,13 @@
 <?php
 
 
-namespace App\Services\Client\Actions;
+namespace App\Service\Client\Actions;
 
 
 use App\Contracts\ActionContract;
 use App\Entity\Client;
 use App\Repository\ClientRepository;
-use App\Services\Client\Dto\CreateClientDTOContract;
+use App\Service\Client\Dto\CreateClientDTO;
 use Psr\Log\LoggerInterface;
 
 /**
@@ -24,11 +24,11 @@ final class CreateClientAction implements ActionContract
     }
 
     /**
-     * @param CreateClientDTOContract $createClientDTO
+     * @param CreateClientDTO $createClientDTO
      * @return Client
      * @throws \Exception
      */
-    public function run(CreateClientDTOContract $createClientDTO): Client {
+    public function run(CreateClientDTO $createClientDTO): Client {
         $entityClient = new Client();
         $entityClient->setLastName($createClientDTO->getLastName());
         $entityClient->setEmail($createClientDTO->getEmail());
