@@ -5,6 +5,7 @@ namespace App\Service\Client\Actions;
 
 
 use App\Contracts\ActionContract;
+use App\DTO\EditEntityDTO;
 use App\Entity\Client;
 use App\Form\ClientForm;
 use App\Repository\ClientRepository;
@@ -22,7 +23,7 @@ final class EditClientAction implements ActionContract
         $this->formFactory = $formFactory;
     }
 
-    public function run(EditClientDTO $editClientDTO): ?Client {
+    public function run(EditEntityDTO $editClientDTO): ?Client {
         $entityClient = $this->clientRepository->find($editClientDTO->getId());
 
         if (!$entityClient) {

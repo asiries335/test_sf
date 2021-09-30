@@ -5,8 +5,8 @@ namespace App\Service\Client\Actions;
 
 
 use App\Contracts\ActionContract;
+use App\DTO\PaginatorDTO;
 use App\Repository\ClientRepository;
-use App\Service\Client\Dto\GetAllClientDTO;
 
 final class GetAllClientAction implements ActionContract
 {
@@ -16,7 +16,7 @@ final class GetAllClientAction implements ActionContract
         $this->clientRepository = $clientRepository;
     }
 
-    public function run(GetAllClientDTO $getAllClientDTO): array{
-        return $this->clientRepository->paginate($getAllClientDTO->getQ(), $getAllClientDTO->getL());
+    public function run(PaginatorDTO $paginatorDTO): array{
+        return $this->clientRepository->paginate($paginatorDTO->getQ(), $paginatorDTO->getL());
     }
 }

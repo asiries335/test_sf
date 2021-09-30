@@ -1,12 +1,12 @@
 <?php
 
 
-namespace App\Service\Client\Dto;
+namespace App\DTO;
 
 
 use App\Contracts\DtoContract;
 
-class GetAllClientDTO implements DtoContract
+class PaginatorDTO implements DtoContract
 {
     private int $q;
     private int $l;

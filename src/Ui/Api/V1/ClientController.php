@@ -3,6 +3,9 @@
 
 namespace App\Ui\Api\V1;
 
+use App\DTO\GetEntityByIdDTO;
+use App\DTO\PaginatorDTO;
+use App\DTO\RemoveEntityByIdDTO;
 use App\Entity\Client;
 use App\Service\Client\Actions\CreateClientAction;
 use App\Service\Client\Actions\EditClientAction;
@@ -10,10 +13,6 @@ use App\Service\Client\Actions\GetAllClientAction;
 use App\Service\Client\Actions\GetClientByIdAction;
 use App\Service\Client\Actions\RemoveClientAction;
 use App\Service\Client\Dto\CreateClientDTO;
-use App\Service\Client\Dto\EditClientDTO;
-use App\Service\Client\Dto\GetAllClientDTO;
-use App\Service\Client\Dto\GetClientByIdDTO;
-use App\Service\Client\Dto\RemoveClientDTO;
 use App\Ui\Api\V1\Resourse\Client\ClientResource;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -89,7 +88,7 @@ class ClientController extends AbstractController
      * @throws \Exception
      */
     public function find(int $id, GetClientByIdAction $getClientByIdAction): JsonResponse {
-        $dto = new GetClientByIdDTO($id);
+        $dto = new GetEntityByIdDTO($id);
 
         $client = $getClientByIdAction->run($dto);
 
@@ -112,8 +111,7 @@ class ClientController extends AbstractController
         $query = $request->query->get('q', 1);
         $limit = $request->query->get('l', 10);
 
-
-        $dto = new GetAllClientDTO($query, $limit);
+        $dto = new PaginatorDTO($query, $limit);
 
         $results = $getAllClientAction->run($dto);
 
@@ -135,7 +133,7 @@ class ClientController extends AbstractController
      * @throws \Exception
      */
     public function remove(int $id, RemoveClientAction $removeClientAction): JsonResponse {
-        $dto = new RemoveClientDTO($id);
+        $dto = new RemoveEntityByIdDTO($id);
 
         $client = $removeClientAction->run($dto);
 

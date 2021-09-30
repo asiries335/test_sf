@@ -1,15 +1,15 @@
 <?php
 
 
-namespace App\Service\Client\Dto;
+namespace App\DTO;
 
 
 use App\Contracts\DtoContract;
 
 /**
- * Транспорт поиска  клиента
+ * Получить сущность по id
  */
-class GetClientByIdDTO implements DtoContract
+class GetEntityByIdDTO implements DtoContract
 {
     private int $id;
 

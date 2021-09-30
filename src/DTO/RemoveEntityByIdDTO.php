@@ -1,12 +1,15 @@
 <?php
 
 
-namespace App\Service\Client\Dto;
+namespace App\DTO;
 
 
 use App\Contracts\DtoContract;
 
-class RemoveClientDTO implements DtoContract
+/**
+ * Удалить сущность по ид
+ */
+class RemoveEntityByIdDTO implements DtoContract
 {
     private int $id;
 
