@@ -16,7 +16,12 @@ class CreateAppDTO implements DtoContract
     private float $amount;
     private string $currency;
 
-    public function __construct(int $clientId, int $term, float $amount, string $currency) {
+    public function __construct(
+        int $clientId,
+        int $term,
+        float $amount,
+        string $currency
+    ) {
         $this->clientId = $clientId;
         $this->term = $term;
         $this->amount = $amount;

@@ -3,6 +3,7 @@
 
 namespace App\Ui\Api\V1;
 
+use App\DTO\EditEntityDTO;
 use App\DTO\GetEntityByIdDTO;
 use App\DTO\PaginatorDTO;
 use App\DTO\RemoveEntityByIdDTO;
@@ -13,15 +14,13 @@ use App\Service\Client\Actions\GetAllClientAction;
 use App\Service\Client\Actions\GetClientByIdAction;
 use App\Service\Client\Actions\RemoveClientAction;
 use App\Service\Client\Dto\CreateClientDTO;
+use App\Ui\Api\V1\Constraints\Client\CreateOrUpdateClientConstraint;
 use App\Ui\Api\V1\Resourse\Client\ClientResource;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Validator\Constraints\Collection;
-use Symfony\Component\Validator\Constraints\Email;
-use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 /**
@@ -43,14 +42,8 @@ class ClientController extends AbstractController
      * @throws \Exception
      */
     public function create(Request $request, CreateClientAction $createClientAction): JsonResponse {
-        $constraint = new Collection(array(
-            'email'       => new Email(),
-            'firstName'   => [new Length(['min' => 2, 'max' => 32])],
-            'lastName'    => new Length(['min' => 2, 'max' => 32]),
-            'phoneNumber' => new Length(['min' => 2, 'max' => 32]),
-        ));
 
-        $fails = $this->validator->validate($request->toArray(), $constraint);
+        $fails = $this->validator->validate($request->toArray(), CreateOrUpdateClientConstraint::list());
 
         if ($fails->count() > 0) {
             $messages = [];
@@ -151,7 +144,7 @@ class ClientController extends AbstractController
      * @throws \Exception
      */
     public function edit(int $id, Request $request, EditClientAction $editClientAction): JsonResponse {
-        $dto = new EditClientDTO($id, $request->toArray());
+        $dto = new EditEntityDTO($id, $request->toArray());
 
         $client = $editClientAction->run($dto);
 
