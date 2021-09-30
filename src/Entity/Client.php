@@ -30,12 +30,12 @@ class Client implements EntityContract
     protected string $lastName;
 
     /**
-     * @ORM\Column(type="string", length=50)
+     * @ORM\Column(type="string", length=50, unique=true)
      */
     protected string $email;
 
     /**
-     * @ORM\Column(type="string", length=16, nullable=true)
+     * @ORM\Column(type="string", length=16, unique=true)
      */
     protected string $phoneNumber;
 

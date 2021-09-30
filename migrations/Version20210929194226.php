@@ -17,20 +17,32 @@ final class Version20210929194226 extends AbstractMigration
     }
 
     public function up(Schema $schema): void {
-        // this up() migration is auto-generated, please modify it to your needs
         $this->addSql(
-            'CREATE TABLE clients (
-                id INT NOT NULL, 
-                email VARCHAR(50) NOT NULL, 
-                phone_number VARCHAR(16) NOT NULL, 
-                first_name VARCHAR(32) NOT NULL,
-                last_name VARCHAR(32) NOT NULL,
-                PRIMARY KEY(id)
-            )'
+            'CREATE TABLE "clients" (
+                    "id" serial NOT NULL,
+                    "email" varchar(255) NOT NULL UNIQUE,
+                    "first_name" varchar(32) NOT NULL,
+                    "last_name" varchar(32) NOT NULL,
+                    "phone_number" varchar(32) NOT NULL UNIQUE,
+                    CONSTRAINT "clients_pk" PRIMARY KEY ("id")
+                )'
         );
+
+        $this->addSql(
+            'CREATE TABLE "applications" (
+                    "id" serial NOT NULL,
+                    "client_id" integer NOT NULL,
+                    "term" integer NOT NULL,
+                    "amount" FLOAT NOT NULL,
+                    "currency" varchar(10) NOT NULL,
+                    CONSTRAINT "applications_pk" PRIMARY KEY ("id")
+                )'
+        );
+
+        $this->addSql('ALTER TABLE "applications" ADD CONSTRAINT "applications_fk0" FOREIGN KEY ("client_id") REFERENCES "clients"("id");');
     }
 
     public function down(Schema $schema): void {
-        $this->addSql('DROP TABLE clients');
+
     }
 }
