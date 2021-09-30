@@ -1,4 +1,3 @@
-controllers_api_v1:
+api_v1:
   resource: '../src/Ui/Api/V1/'
   type: annotation
-

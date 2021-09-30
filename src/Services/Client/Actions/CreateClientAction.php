@@ -13,7 +13,7 @@ use Psr\Log\LoggerInterface;
 /**
  * Действие для создания клиента
  */
-final class CreateClientActionContract implements ActionContract
+final class CreateClientAction implements ActionContract
 {
     private ClientRepository $clientRepository;
     private LoggerInterface $logger;
