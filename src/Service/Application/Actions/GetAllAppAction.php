@@ -6,18 +6,21 @@ namespace App\Service\Application\Actions;
 
 use App\Contracts\ActionContract;
 use App\DTO\PaginatorDTO;
-use App\Repository\AppRepository;
-use App\Repository\ClientRepository;
+use App\Repository\ApplicationRepository;
 
 final class GetAllAppAction implements ActionContract
 {
-    private AppRepository $appRepository;
+    private ApplicationRepository $appRepository;
 
-    public function __construct(AppRepository $appRepository) {
+    public function __construct(ApplicationRepository $appRepository) {
         $this->appRepository = $appRepository;
     }
 
-    public function run(PaginatorDTO $paginatorDTO): array{
+    /**
+     * @param PaginatorDTO $paginatorDTO
+     * @return array
+     */
+    public function run(PaginatorDTO $paginatorDTO): array {
         return $this->appRepository->paginate($paginatorDTO->getQ(), $paginatorDTO->getL());
     }
 }

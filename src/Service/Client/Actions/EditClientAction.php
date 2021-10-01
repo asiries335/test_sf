@@ -23,6 +23,11 @@ final class EditClientAction implements ActionContract
         $this->formFactory = $formFactory;
     }
 
+    /**
+     * @param EditEntityDTO $editClientDTO
+     * @return Client|null
+     * @throws \Exception
+     */
     public function run(EditEntityDTO $editClientDTO): ?Client {
         $entityClient = $this->clientRepository->find($editClientDTO->getId());
 

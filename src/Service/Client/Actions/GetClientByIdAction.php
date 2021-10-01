@@ -20,6 +20,10 @@ final class GetClientByIdAction implements ActionContract
         $this->clientRepository = $clientRepository;
     }
 
+    /**
+     * @param GetEntityByIdDTO $getEntityByIdDTO
+     * @return Client|null
+     */
     public function run(GetEntityByIdDTO $getEntityByIdDTO): ?Client {
         return $this->clientRepository->find($getEntityByIdDTO->getId());
     }

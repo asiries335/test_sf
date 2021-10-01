@@ -16,7 +16,11 @@ final class GetAllClientAction implements ActionContract
         $this->clientRepository = $clientRepository;
     }
 
-    public function run(PaginatorDTO $paginatorDTO): array{
+    /**
+     * @param PaginatorDTO $paginatorDTO
+     * @return array
+     */
+    public function run(PaginatorDTO $paginatorDTO): array {
         return $this->clientRepository->paginate($paginatorDTO->getQ(), $paginatorDTO->getL());
     }
 }

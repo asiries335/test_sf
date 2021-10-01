@@ -16,6 +16,10 @@ final class RemoveClientAction implements ActionContract
         $this->clientRepository = $clientRepository;
     }
 
+    /**
+     * @param RemoveEntityByIdDTO $removeClientDTO
+     * @return bool|null
+     */
     public function run(RemoveEntityByIdDTO $removeClientDTO): ?bool {
         $client = $this->clientRepository->find($removeClientDTO->getId());
 

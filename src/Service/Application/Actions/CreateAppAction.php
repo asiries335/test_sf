@@ -6,7 +6,7 @@ namespace App\Service\Application\Actions;
 
 use App\Contracts\ActionContract;
 use App\Entity\Application;
-use App\Repository\AppRepository;
+use App\Repository\ApplicationRepository;
 use App\Repository\ClientRepository;
 use App\Service\Application\Dto\CreateAppDTO;
 
@@ -15,14 +15,19 @@ use App\Service\Application\Dto\CreateAppDTO;
  */
 final class CreateAppAction implements ActionContract
 {
-    private AppRepository $appRepository;
+    private ApplicationRepository $appRepository;
     private ClientRepository $clientRepository;
 
-    public function __construct(AppRepository $appRepository, ClientRepository $clientRepository) {
+    public function __construct(ApplicationRepository $appRepository, ClientRepository $clientRepository) {
         $this->appRepository = $appRepository;
         $this->clientRepository = $clientRepository;
     }
 
+    /**
+     * @param CreateAppDTO $createAppDTO
+     * @return bool|null
+     * @throws \Exception
+     */
     public function run(CreateAppDTO $createAppDTO): ?bool {
         $client = $this->clientRepository->find($createAppDTO->getClientId());
 
