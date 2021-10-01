@@ -28,7 +28,7 @@ final class CreateAppAction implements ActionContract
      * @return bool|null
      * @throws \Exception
      */
-    public function run(CreateAppDTO $createAppDTO): ?bool {
+    public function run(CreateAppDTO $createAppDTO): ?Application {
         $client = $this->clientRepository->find($createAppDTO->getClientId());
 
         if (!$client) {
@@ -43,6 +43,6 @@ final class CreateAppAction implements ActionContract
 
         $this->appRepository->store($app);
 
-        return true;
+       return $app;
     }
 }

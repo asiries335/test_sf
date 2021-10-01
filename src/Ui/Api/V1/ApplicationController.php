@@ -52,7 +52,7 @@ class ApplicationController extends BaseApiController
             ], Response::HTTP_UNPROCESSABLE_ENTITY);
         }
 
-        return $this->json(['success' => true], Response::HTTP_CREATED);
+        return $this->json((new AppResource($result))->toArray(), Response::HTTP_CREATED);
     }
 
     /**

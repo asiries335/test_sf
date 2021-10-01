@@ -50,4 +50,18 @@ client_edit|PUT|`/api/v1/clients/{id}`
 * Edit a client
 ![img_1.png](scenario/img_4.png)
 
+##  Application ##
+* Create an app
+![img_1.png](scenario/img_5.png)
 
+* Get an app
+![img_1.png](scenario/img_6.png)
+
+* List of apps
+![img_1.png](scenario/img_7.png)
+  
+* Delete an app
+![img_1.png](scenario/img_8.png)
+
+* Edit an app
+  ![img_1.png](scenario/img_9.png)
