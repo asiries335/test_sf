@@ -15,14 +15,11 @@ use App\Service\Application\Actions\GetAppByIdAction;
 use App\Service\Application\Actions\RemoveAppAction;
 use App\Service\Application\Dto\CreateAppDTO;
 use App\Ui\Api\V1\Constraints\Application\CreateOrUpdateAppConstrain;
-use App\Ui\Api\V1\Constraints\Client\CreateOrUpdateClientConstraint;
 use App\Ui\Api\V1\Resourse\Application\AppResource;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 /**
  * Controller used to manage applications
@@ -30,32 +27,15 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
  * @Route("/api/v1/apps")
  *
  */
-class AppController extends AbstractController
+class ApplicationController extends BaseApiController
 {
-    private ValidatorInterface $validator;
-
-    public function __construct(ValidatorInterface $validator) {
-        $this->validator = $validator;
-    }
 
     /**
      * @Route("/create", methods="POST", name="app_create")
      * @throws \Exception
      */
     public function create(Request $request, CreateAppAction $createAppAction): JsonResponse {
-        $fails = $this->validator->validate($request->toArray(), CreateOrUpdateAppConstrain::list());
-
-        if ($fails->count() > 0) {
-            $messages = [];
-            foreach ($fails as $fail) {
-                $messages[] = $fail->getMessage();
-            }
-
-            return new JsonResponse([
-                'error'    => 'validate',
-                'messages' => json_encode($messages)
-            ], Response::HTTP_UNPROCESSABLE_ENTITY);
-        }
+        $this->validate($request, new CreateOrUpdateAppConstrain());
 
         $dto = new CreateAppDTO(
             $request->get('client_id'),
@@ -86,7 +66,7 @@ class AppController extends AbstractController
 
         if (!$app) {
             return new JsonResponse([
-                'error' => 'not found app',
+                'error' => 'not found an app',
             ], Response::HTTP_UNPROCESSABLE_ENTITY);
         }
 
@@ -104,7 +84,7 @@ class AppController extends AbstractController
 
         if (!$result) {
             return new JsonResponse([
-                'error' => 'not found entity',
+                'error' => 'not found an entity',
             ], Response::HTTP_UNPROCESSABLE_ENTITY);
         }
 
@@ -141,13 +121,15 @@ class AppController extends AbstractController
      * @throws \Exception
      */
     public function edit(int $id, Request $request, EditAppAction $editAppAction): JsonResponse {
+        $this->validate($request, new CreateOrUpdateAppConstrain());
+
         $dto = new EditEntityDTO($id, $request->toArray());
 
         $app = $editAppAction->run($dto);
 
         if (!$app) {
             return new JsonResponse([
-                'error' => 'not found entity',
+                'error' => 'not found an entity',
             ], Response::HTTP_UNPROCESSABLE_ENTITY);
         }
 

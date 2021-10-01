@@ -16,12 +16,10 @@ use App\Service\Client\Actions\RemoveClientAction;
 use App\Service\Client\Dto\CreateClientDTO;
 use App\Ui\Api\V1\Constraints\Client\CreateOrUpdateClientConstraint;
 use App\Ui\Api\V1\Resourse\Client\ClientResource;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 /**
  * Controller used to manage clients
@@ -29,33 +27,14 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
  * @Route("/api/v1/clients")
  *
  */
-class ClientController extends AbstractController
+class ClientController extends BaseApiController
 {
-    private ValidatorInterface $validator;
-
-    public function __construct(ValidatorInterface $validator) {
-        $this->validator = $validator;
-    }
-
     /**
      * @Route("/create", methods="POST", name="client_create")
      * @throws \Exception
      */
     public function create(Request $request, CreateClientAction $createClientAction): JsonResponse {
-
-        $fails = $this->validator->validate($request->toArray(), CreateOrUpdateClientConstraint::list());
-
-        if ($fails->count() > 0) {
-            $messages = [];
-            foreach ($fails as $fail) {
-                $messages[] = $fail->getMessage();
-            }
-
-            return new JsonResponse([
-                'error'    => 'validate',
-                'messages' => json_encode($messages)
-            ], Response::HTTP_UNPROCESSABLE_ENTITY);
-        }
+        $this->validate($request, new CreateOrUpdateClientConstraint());
 
         $dto = new CreateClientDTO(
             $request->get('firstName'),
@@ -144,6 +123,8 @@ class ClientController extends AbstractController
      * @throws \Exception
      */
     public function edit(int $id, Request $request, EditClientAction $editClientAction): JsonResponse {
+        $this->validate($request, new CreateOrUpdateClientConstraint());
+
         $dto = new EditEntityDTO($id, $request->toArray());
 
         $client = $editClientAction->run($dto);

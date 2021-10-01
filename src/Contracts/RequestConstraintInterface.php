@@ -8,7 +8,7 @@ use Symfony\Component\Validator\Constraints\Collection;
 /**
  * Контракт для ограничений реквеста
  */
-interface ApiRequestConstraintInterface
+interface RequestConstraintInterface
 {
-    public static function list(): Collection;
+    public function list(): Collection;
 }
