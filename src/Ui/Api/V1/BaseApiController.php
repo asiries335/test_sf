@@ -8,7 +8,6 @@ use App\Contracts\RequestConstraintInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 abstract class BaseApiController extends AbstractController
@@ -35,10 +34,7 @@ abstract class BaseApiController extends AbstractController
                 $messages[] = $fail->getMessage();
             }
 
-            return new JsonResponse([
-                'error'    => 'validate',
-                'messages' => json_encode($messages)
-            ], Response::HTTP_UNPROCESSABLE_ENTITY);
+            throw new \DomainException(json_encode($messages));
         }
 
         return true;

@@ -1,6 +1,7 @@
 api_v1:
   resource: '../src/Ui/Api/V1/'
   type: annotation
+  #prefix: /api/v1/
 
 web:
   resource: '../src/Ui/Web/'

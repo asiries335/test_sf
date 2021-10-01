@@ -11,7 +11,7 @@ use App\Contracts\EnumContract;
  */
 class CurrencyTypeEnum implements EnumContract
 {
-    public const EURO = 'euro';
+    public const EURO = 'EUR';
 
     /**
      * @return string[]
