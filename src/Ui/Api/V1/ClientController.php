@@ -44,7 +44,7 @@ class ClientController extends BaseApiController
         );
 
         try {
-            $createClientAction->run($dto);
+            $client = $createClientAction->run($dto);
         } catch (\Exception $exception) {
             return new JsonResponse([
                 'error'   => 'not created a client',
@@ -52,7 +52,7 @@ class ClientController extends BaseApiController
             ], Response::HTTP_UNPROCESSABLE_ENTITY);
         }
 
-        return $this->json(['success' => true], Response::HTTP_CREATED);
+        return $this->json((new ClientResource($client))->toArray(), Response::HTTP_CREATED);
     }
 
     /**

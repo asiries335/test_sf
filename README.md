@@ -31,3 +31,23 @@ client_find|GET|`/api/v1/clients/{id}`
 client_list|GET|`/api/v1/clients/`
 client_delete|DELETE|`/api/v1/clients/{id}`
 client_edit|PUT|`/api/v1/clients/{id}`
+
+
+# Test scenario #
+##  Client ##
+* Create a client
+![img.png](scenario/img.png)
+  
+* Get a client
+![img_1.png](scenario/img_1.png)
+  
+* List of clients
+![img_1.png](scenario/img_2.png)
+
+* Delete a client
+![img_1.png](scenario/img_3.png)
+
+* Edit a client
+![img_1.png](scenario/img_4.png)
+
+
