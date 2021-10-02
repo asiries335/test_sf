@@ -15,7 +15,7 @@ Postgres|postgres|5432 (default)
 * Run this command for get all depends: `composer install`
 * Create database : `php bin/console doctrine:database:create`
 * Create schema: `php bin/console  doctrine:schema:create`
-* See http://localhost:62000
+* See http://localhost
 
 # Map of endpoints for api v1 #
 
@@ -31,6 +31,12 @@ client_find|GET|`/api/v1/clients/{id}`
 client_list|GET|`/api/v1/clients/`
 client_delete|DELETE|`/api/v1/clients/{id}`
 client_edit|PUT|`/api/v1/clients/{id}`
+
+# Tests #
+* Command for run all the tests: `php bin/phpunit  `
+
+###### Created feature tests to create a client
+* `tests/Feature/api/v1/CreateClientTest.php`
 
 
 # Test scenario #

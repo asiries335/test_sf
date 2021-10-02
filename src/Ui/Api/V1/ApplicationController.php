@@ -35,7 +35,14 @@ class ApplicationController extends BaseApiController
      * @throws \Exception
      */
     public function create(Request $request, CreateAppAction $createAppAction): JsonResponse {
-        $this->validate($request, new CreateOrUpdateAppConstrain());
+        try {
+            $this->validate($request, new CreateOrUpdateAppConstrain());
+        } catch (\Exception $exception) {
+            return new JsonResponse([
+                'error'   => 'validate',
+                'message' => $exception->getMessage()
+            ], Response::HTTP_FORBIDDEN);
+        }
 
         $dto = new CreateAppDTO(
             $request->get('client_id'),
@@ -121,7 +128,14 @@ class ApplicationController extends BaseApiController
      * @throws \Exception
      */
     public function edit(int $id, Request $request, EditAppAction $editAppAction): JsonResponse {
-        $this->validate($request, new CreateOrUpdateAppConstrain());
+        try {
+            $this->validate($request, new CreateOrUpdateAppConstrain());
+        } catch (\Exception $exception) {
+            return new JsonResponse([
+                'error'   => 'validate',
+                'message' => $exception->getMessage()
+            ], Response::HTTP_FORBIDDEN);
+        }
 
         $dto = new EditEntityDTO($id, $request->toArray());
 

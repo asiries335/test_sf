@@ -34,7 +34,15 @@ class ClientController extends BaseApiController
      * @throws \Exception
      */
     public function create(Request $request, CreateClientAction $createClientAction): JsonResponse {
-        $this->validate($request, new CreateOrUpdateClientConstraint());
+        try {
+            $this->validate($request, new CreateOrUpdateClientConstraint());
+        } catch (\Exception $exception) {
+            return new JsonResponse([
+                'error'   => 'validate',
+                'message' => $exception->getMessage()
+            ], Response::HTTP_FORBIDDEN);
+        }
+
 
         $dto = new CreateClientDTO(
             $request->get('firstName'),
@@ -123,7 +131,14 @@ class ClientController extends BaseApiController
      * @throws \Exception
      */
     public function edit(int $id, Request $request, EditClientAction $editClientAction): JsonResponse {
-        $this->validate($request, new CreateOrUpdateClientConstraint());
+        try {
+            $this->validate($request, new CreateOrUpdateClientConstraint());
+        } catch (\Exception $exception) {
+            return new JsonResponse([
+                'error'   => 'validate',
+                'message' => $exception->getMessage()
+            ], Response::HTTP_FORBIDDEN);
+        }
 
         $dto = new EditEntityDTO($id, $request->toArray());
 
