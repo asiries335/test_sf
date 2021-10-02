@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Contracts;
+namespace App\Contract;
 
 /**
  * Контракт для транспорта

@@ -3,7 +3,7 @@
 
 namespace App\Service\Client\Dto;
 
-use App\Contracts\DtoContract;
+use App\Contract\DtoContract;
 
 /**
  * Транспорт для создания клиента

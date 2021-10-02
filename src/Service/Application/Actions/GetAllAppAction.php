@@ -4,7 +4,7 @@
 namespace App\Service\Application\Actions;
 
 
-use App\Contracts\ActionContract;
+use App\Contract\ActionContract;
 use App\DTO\PaginatorDTO;
 use App\Repository\ApplicationRepository;
 

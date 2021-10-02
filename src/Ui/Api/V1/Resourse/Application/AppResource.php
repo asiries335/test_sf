@@ -3,7 +3,7 @@
 
 namespace App\Ui\Api\V1\Resourse\Application;
 
-use App\Contracts\ApiResourceContract;
+use App\Contract\ApiResourceContract;
 use App\Entity\Application;
 
 class AppResource implements ApiResourceContract

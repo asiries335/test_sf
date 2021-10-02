@@ -4,14 +4,14 @@
 namespace App\Ui\Api\V1\Constraints\Application;
 
 
-use App\Contracts\RequestConstraintInterface;
+use App\Contract\RequestConstraintContract;
 use App\Enum\CurrencyTypeEnum;
 use Symfony\Component\Validator\Constraints\Collection;
 use Symfony\Component\Validator\Constraints\EqualTo;
 use Symfony\Component\Validator\Constraints\Range;
 use Symfony\Component\Validator\Constraints\Type;
 
-class CreateOrUpdateAppConstrain implements RequestConstraintInterface
+class CreateOrUpdateAppConstrain implements RequestConstraintContract
 {
     public function list(): Collection {
         return new Collection([

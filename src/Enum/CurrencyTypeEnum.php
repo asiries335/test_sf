@@ -4,7 +4,7 @@
 namespace App\Enum;
 
 
-use App\Contracts\EnumContract;
+use App\Contract\EnumContract;
 
 /**
  * Перечисление типов валют

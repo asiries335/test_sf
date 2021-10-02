@@ -3,7 +3,7 @@
 
 namespace App\Entity;
 
-use App\Contracts\EntityContract;
+use App\Contract\EntityContract;
 use Doctrine\ORM\Mapping as ORM;
 
 /**

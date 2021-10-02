@@ -7,7 +7,7 @@ use LogicException;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 
-class OnlyLatinValidator extends ConstraintValidator
+class OnlyLatinChaptersValidator extends ConstraintValidator
 {
 
     public function validate($value, Constraint $constraint) {
@@ -19,8 +19,8 @@ class OnlyLatinValidator extends ConstraintValidator
             throw new LogicException('Value should be string.');
         }
 
-        if (!$constraint instanceof OnlyLatin) {
-            throw new LogicException(sprintf('You can only pass %s constraint to this validator.', OnlyLatin::class));
+        if (!$constraint instanceof OnlyLatinChapters) {
+            throw new LogicException(sprintf('You can only pass %s constraint to this validator.', OnlyLatinChapters::class));
         }
 
         if (!preg_match('/^[\w\d\s.,-]*$/', $value)) {

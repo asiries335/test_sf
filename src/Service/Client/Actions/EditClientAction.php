@@ -4,7 +4,7 @@
 namespace App\Service\Client\Actions;
 
 
-use App\Contracts\ActionContract;
+use App\Contract\ActionContract;
 use App\DTO\EditEntityDTO;
 use App\Entity\Client;
 use App\Form\ClientForm;

@@ -4,7 +4,7 @@
 namespace App\Ui\Api\V1\Resourse\Client;
 
 
-use App\Contracts\ApiResourceContract;
+use App\Contract\ApiResourceContract;
 use App\Entity\Client;
 
 /**

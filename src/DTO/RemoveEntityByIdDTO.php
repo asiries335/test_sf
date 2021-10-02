@@ -4,7 +4,7 @@
 namespace App\DTO;
 
 
-use App\Contracts\DtoContract;
+use App\Contract\DtoContract;
 
 /**
  * Удалить сущность по ид

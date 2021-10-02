@@ -4,7 +4,7 @@
 namespace App\Ui\Api\V1;
 
 
-use App\Contracts\RequestConstraintInterface;
+use App\Contract\RequestConstraintContract;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -22,10 +22,10 @@ abstract class BaseApiController extends AbstractController
      * Валидация реквекста
      *
      * @param Request $request
-     * @param RequestConstraintInterface $apiRequestConstraint
+     * @param RequestConstraintContract $apiRequestConstraint
      * @return bool|JsonResponse
      */
-    public function validate(Request $request, RequestConstraintInterface $apiRequestConstraint) {
+    public function validate(Request $request, RequestConstraintContract $apiRequestConstraint) {
         $fails = $this->validator->validate($request->toArray(), $apiRequestConstraint->list());
 
         if ($fails->count() > 0) {

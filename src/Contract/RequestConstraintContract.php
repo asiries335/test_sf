@@ -1,14 +1,14 @@
 <?php
 
 
-namespace App\Contracts;
+namespace App\Contract;
 
 use Symfony\Component\Validator\Constraints\Collection;
 
 /**
  * Контракт для ограничений реквеста
  */
-interface RequestConstraintInterface
+interface RequestConstraintContract
 {
     public function list(): Collection;
 }

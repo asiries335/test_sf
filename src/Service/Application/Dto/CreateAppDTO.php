@@ -4,7 +4,7 @@
 namespace App\Service\Application\Dto;
 
 
-use App\Contracts\DtoContract;
+use App\Contract\DtoContract;
 
 /**
  * Транспорт для создания приложения

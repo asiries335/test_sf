@@ -4,7 +4,7 @@
 namespace App\Repository;
 
 
-use App\Contracts\EntityContract;
+use App\Contract\EntityContract;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\Tools\Pagination\Paginator;
 use Exception;
