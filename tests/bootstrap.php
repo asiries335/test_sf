@@ -10,8 +10,3 @@ if (file_exists(dirname(__DIR__).'/config/bootstrap.php')) {
     (new Dotenv())->bootEnv(dirname(__DIR__).'/.env');
 }
 
-$kernel = new App\Kernel('test', true);
-$kernel->boot();
-
-$application = new Symfony\Bundle\FrameworkBundle\Console\Application($kernel);
-$application->setAutoExit(false);

@@ -4,7 +4,11 @@
 namespace App\Tests\feature\api\v1;
 
 use App\Tests\Feature\api\ApiTestCase;
+use App\Ui\Api\V1\ClientController;
 
+/**
+ * @see ClientController::create()
+ */
 class CreateClientTest extends ApiTestCase
 {
     /**
